@@ -1,4 +1,4 @@
-const CACHE = "mandamientos-v1";
+const CACHE = "mandamientos-v2";
 const ASSETS = ["./", "./index.html", "./styles.css", "./manifest.json"];
 
 self.addEventListener("install", (e) => {
