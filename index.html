@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Éxodo 20:1–17 (RVR1909) — Los Diez Mandamientos</title>
+
+  <meta name="description" content="Éxodo 20:1–17 en Reina-Valera 1909. Los Diez Mandamientos, para leer y recordar." />
+  <meta name="theme-color" content="#0b0b0f" />
+
+  <link rel="manifest" href="manifest.json" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="wrap">
+    <div class="badge">Reina-Valera 1909 (RVR1909)</div>
+    <h1>Los Diez Mandamientos</h1>
+    <p class="subtitle">Éxodo 20:1–17</p>
+
+    <div class="cta">
+      <button id="howBtn" class="btn">Cómo ponerlo en mi celular</button>
+      <a class="btn ghost" href="#texto">Ir al texto</a>
+    </div>
+  </header>
+
+  <main class="wrap" id="texto">
+    <article class="card">
+      <h2>Éxodo 20:1–17</h2>
+
+      <ol class="verses">
+        <li><span class="v">1</span> Y habló Dios todas estas palabras, diciendo:</li>
+        <li><span class="v">2</span> Yo soy Jehová tu Dios, que te saqué de la tierra de Egipto, de casa de siervos.</li>
+        <li><span class="v">3</span> No tendrás dioses ajenos delante de mí.</li>
+        <li><span class="v">4</span> No te harás imagen, ni ninguna semejanza de cosa que esté arriba en el cielo, ni abajo en la tierra, ni en las aguas debajo de la tierra:</li>
+        <li><span class="v">5</span> No te inclinarás á ellas, ni las honrarás; porque yo soy Jehová tu Dios, fuerte, celoso, que visito la maldad de los padres sobre los hijos hasta la tercera y cuarta generación de los que me aborrecen;</li>
+        <li><span class="v">6</span> Y que hago misericordia en millares á los que me aman, y guardan mis mandamientos.</li>
+        <li><span class="v">7</span> No tomarás el nombre de Jehová tu Dios en vano; porque no dará por inocente Jehová al que tomare su nombre en vano.</li>
+        <li><span class="v">8</span> Acuérdate del día del reposo, para santificarlo:</li>
+        <li><span class="v">9</span> Seis días trabajarás, y harás toda tu obra;</li>
+        <li><span class="v">10</span> Mas el séptimo día será reposo para Jehová tu Dios: no hagas en él obra alguna, tú, ni tu hijo, ni tu hija, ni tu siervo, ni tu criada, ni tu bestia, ni tu extranjero que está dentro de tus puertas:</li>
+        <li><span class="v">11</span> Porque en seis días hizo Jehová los cielos y la tierra, la mar y todas las cosas que en ellos hay, y reposó en el séptimo día: por tanto Jehová bendijo el día del reposo y lo santificó.</li>
+        <li><span class="v">12</span> Honra á tu padre y á tu madre, porque tus días se alarguen en la tierra que Jehová tu Dios te da.</li>
+        <li><span class="v">13</span> No matarás.</li>
+        <li><span class="v">14</span> No cometerás adulterio.</li>
+        <li><span class="v">15</span> No hurtarás.</li>
+        <li><span class="v">16</span> No hablarás contra tu prójimo falso testimonio.</li>
+        <li><span class="v">17</span> No codiciarás la casa de tu prójimo, no codiciarás la mujer de tu prójimo, ni su siervo, ni su criada, ni su buey, ni su asno, ni cosa alguna de tu prójimo.</li>
+      </ol>
+
+      <footer class="foot">
+        <p><strong>Referencia:</strong> Éxodo 20:1–17 (RVR1909)</p>
+      </footer>
+    </article>
+
+    <section class="card">
+      <h2>Agregar como acceso directo (tipo app)</h2>
+      <p class="hint">
+        <strong>Android:</strong> abre el link en Chrome → ⋮ (3 puntos) → <em>“Agregar a pantalla principal”</em>.<br/>
+        <strong>iPhone:</strong> abre en Safari → Compartir → <em>“Agregar a pantalla de inicio”</em>.
+      </p>
+      <p class="small">
+        Tip: si tu cel te deja, quedará como “app” y se abrirá a pantalla completa.
+      </p>
+    </section>
+  </main>
+
+  <dialog id="howDlg">
+    <div class="dlg">
+      <h3>Cómo ponerlo en tu celular</h3>
+      <p><strong>Android (Chrome):</strong> ⋮ → “Agregar a pantalla principal”.</p>
+      <p><strong>iPhone (Safari):</strong> Compartir → “Agregar a pantalla de inicio”.</p>
+      <div class="dlg-actions">
+        <button id="closeDlg" class="btn">Listo</button>
+      </div>
+    </div>
+  </dialog>
+
+  <script>
+    // Modal de ayuda
+    const dlg = document.getElementById("howDlg");
+    document.getElementById("howBtn").addEventListener("click", () => dlg.showModal());
+    document.getElementById("closeDlg").addEventListener("click", () => dlg.close());
+
+    // Registrar Service Worker (para que cargue rápido y pueda funcionar offline básico)
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => navigator.serviceWorker.register("./sw.js"));
+    }
+  </script>
+</body>
+</html>
