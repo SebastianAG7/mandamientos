@@ -1,11 +1,11 @@
 :root{
-  --bg:#0b0b0f;
-  --card:#12121a;
-  --txt:#f2f2f7;
-  --mut:#b8b8c8;
-  --line:rgba(255,255,255,.08);
-  --btn:#1f1f2e;
-  --btn2:#2b2b44;
+  --bg:#0b0b12;
+  --txt:#f4f6ff;
+  --mut:#b7bdd6;
+  --line:rgba(255,255,255,.10);
+  --glass: rgba(255,255,255,.06);
+  --glass2: rgba(255,255,255,.04);
+  --shadow: 0 18px 60px rgba(0,0,0,.55);
 }
 
 *{box-sizing:border-box}
@@ -13,88 +13,290 @@ html,body{height:100%}
 body{
   margin:0;
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-  background: radial-gradient(1200px 600px at 20% 0%, rgba(120,80,255,.20), transparent 60%),
-              radial-gradient(1000px 500px at 80% 10%, rgba(0,200,255,.14), transparent 60%),
-              var(--bg);
   color:var(--txt);
+  background: var(--bg);
+  overflow-x:hidden;
 }
 
-.wrap{max-width:900px;margin:0 auto;padding:28px 18px}
-.badge{
-  display:inline-block;
-  padding:6px 10px;
+/* ===== Fondo animado (aurora + grain) */
+.bg{
+  position:fixed; inset:0;
+  z-index:-2;
+  background: radial-gradient(900px 500px at 20% 0%, rgba(120,80,255,.25), transparent 60%),
+              radial-gradient(900px 500px at 80% 10%, rgba(0,220,255,.18), transparent 60%),
+              radial-gradient(800px 500px at 50% 100%, rgba(255,90,170,.12), transparent 60%),
+              var(--bg);
+}
+.aurora{
+  position:absolute;
+  width:60vmax; height:60vmax;
+  filter: blur(40px);
+  opacity:.55;
+  border-radius: 999px;
+  mix-blend-mode: screen;
+  animation: float 10s ease-in-out infinite;
+}
+.a1{ background: radial-gradient(circle at 30% 30%, rgba(0,255,200,.55), transparent 55%); left:-10vmax; top:-10vmax; animation-duration: 12s; }
+.a2{ background: radial-gradient(circle at 70% 30%, rgba(180,80,255,.55), transparent 55%); right:-15vmax; top:0vmax; animation-duration: 14s; }
+.a3{ background: radial-gradient(circle at 40% 70%, rgba(255,120,0,.35), transparent 55%); left:10vmax; bottom:-20vmax; animation-duration: 16s; }
+
+@keyframes float{
+  0%{ transform: translate(0,0) scale(1); }
+  50%{ transform: translate(2vmax,-2vmax) scale(1.06); }
+  100%{ transform: translate(0,0) scale(1); }
+}
+
+.grain{
+  position:absolute; inset:-50%;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)' opacity='.18'/%3E%3C/svg%3E");
+  opacity:.12;
+  transform: rotate(10deg);
+}
+
+/* ===== Layout */
+.wrap{max-width:980px;margin:0 auto;padding:26px 18px}
+.hero{padding-top:34px;padding-bottom:8px}
+
+.topline{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.pill{
+  padding:8px 12px;
   border:1px solid var(--line);
   border-radius:999px;
-  color:var(--mut);
+  background: rgba(0,0,0,.18);
+  backdrop-filter: blur(12px);
   font-size:13px;
+  color:var(--mut);
 }
-h1{margin:14px 0 6px;font-size:34px;letter-spacing:.2px}
-.subtitle{margin:0 0 14px;color:var(--mut)}
-.cta{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+.pill.soft{opacity:.9}
 
-.card{
-  background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
-  border:1px solid var(--line);
-  border-radius:18px;
-  padding:18px 16px;
-  margin:16px 0;
-  box-shadow: 0 12px 30px rgba(0,0,0,.35);
+.title{
+  margin:14px 0 6px;
+  font-size:44px;
+  line-height:1.05;
+  letter-spacing:.2px;
+  text-shadow: 0 10px 40px rgba(0,0,0,.55);
 }
+.subtitle{margin:0 0 14px;color:var(--mut);max-width:72ch}
 
-h2{margin:0 0 12px;font-size:20px}
-.verses{
-  margin:0;
-  padding-left:20px;
-  line-height:1.55;
-}
-.verses li{margin:10px 0}
-.v{
-  display:inline-block;
-  min-width:22px;
-  text-align:center;
-  padding:2px 8px;
-  margin-right:8px;
-  border-radius:999px;
-  background: rgba(255,255,255,.06);
-  border:1px solid var(--line);
-  color: var(--mut);
-  font-size:12px;
-}
-
-.foot{border-top:1px solid var(--line);margin-top:14px;padding-top:12px;color:var(--mut)}
-.hint{color:var(--mut);line-height:1.5}
-.small{color:var(--mut);font-size:13px;margin:0}
-
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0 12px}
 .btn{
   border:1px solid var(--line);
-  background: var(--btn);
+  background: rgba(255,255,255,.06);
   color: var(--txt);
   padding:10px 12px;
-  border-radius:12px;
+  border-radius:14px;
   cursor:pointer;
   text-decoration:none;
   display:inline-flex;
   align-items:center;
   gap:8px;
+  backdrop-filter: blur(14px);
+  box-shadow: 0 10px 30px rgba(0,0,0,.35);
+  transition: transform .15s ease, background .2s ease, box-shadow .2s ease;
 }
-.btn:hover{background:var(--btn2)}
-.ghost{background:transparent}
+.btn:hover{
+  transform: translateY(-1px);
+  background: rgba(255,255,255,.10);
+  box-shadow: 0 14px 40px rgba(0,0,0,.45);
+}
+.btn:active{transform: translateY(0)}
+.btn.ghost{background: transparent}
 
+.mini{display:flex;gap:10px;flex-wrap:wrap}
+.chip{
+  padding:8px 10px;
+  border:1px solid var(--line);
+  border-radius:999px;
+  background: rgba(255,255,255,.04);
+  color:var(--mut);
+  font-size:13px;
+  backdrop-filter: blur(12px);
+}
+
+/* ===== Cards */
+.card{
+  background: linear-gradient(180deg, var(--glass), var(--glass2));
+  border:1px solid var(--line);
+  border-radius:22px;
+  padding:18px 16px;
+  margin:16px 0;
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(16px);
+}
+
+.row{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.badge{
+  padding:6px 10px;
+  border:1px solid var(--line);
+  border-radius:999px;
+  color:var(--mut);
+  background: rgba(0,0,0,.22);
+}
+.muted{color:var(--mut)}
+.small{font-size:13px}
+
+.quote{
+  margin-top:10px;
+  padding:12px 12px;
+  border-radius:16px;
+  border:1px solid var(--line);
+  background: rgba(0,0,0,.20);
+}
+.v{
+  display:inline-block;
+  padding:2px 8px;
+  margin-right:8px;
+  border-radius:999px;
+  border:1px solid var(--line);
+  background: rgba(255,255,255,.06);
+  color: var(--mut);
+  font-size:12px;
+}
+
+/* ===== Lista de mandamientos */
+.cmds{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.cmd{
+  display:flex;
+  gap:14px;
+  padding:14px;
+  border-radius:18px;
+  border:1px solid var(--line);
+  background: rgba(0,0,0,.18);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 10px 26px rgba(0,0,0,.35);
+  transition: transform .18s ease, border-color .2s ease, background .2s ease;
+  position:relative;
+  overflow:hidden;
+}
+.cmd::before{
+  content:"";
+  position:absolute; inset:-2px;
+  background: radial-gradient(800px 200px at 0% 0%, rgba(0,255,200,.12), transparent 60%),
+              radial-gradient(800px 200px at 100% 0%, rgba(180,80,255,.12), transparent 60%),
+              radial-gradient(800px 200px at 50% 120%, rgba(255,120,0,.10), transparent 60%);
+  opacity:.8;
+  pointer-events:none;
+}
+.cmd > *{position:relative}
+
+.cmd:hover{
+  transform: translateY(-2px);
+  border-color: rgba(255,255,255,.18);
+  background: rgba(255,255,255,.05);
+}
+.n{
+  width:44px;height:44px;
+  border-radius:14px;
+  display:grid;place-items:center;
+  border:1px solid var(--line);
+  background: rgba(255,255,255,.06);
+  font-weight:800;
+  font-size:16px;
+}
+.ref{color:var(--mut);font-size:12px;letter-spacing:.2px}
+.txt{line-height:1.55}
+
+/* Modos */
+.cmds.compact .cmd{padding:12px}
+.cmds.compact .txt{font-size:14px}
+
+.cmds.focus .cmd{opacity:.55}
+.cmds.focus .cmd:hover{opacity:1}
+
+/* ===== Tarjeta del día */
+.deck{display:grid;gap:12px;margin-top:10px}
+.card2{
+  border:1px solid var(--line);
+  border-radius:22px;
+  padding:18px 16px;
+  background: rgba(0,0,0,.22);
+  box-shadow: 0 18px 50px rgba(0,0,0,.55);
+  backdrop-filter: blur(18px);
+  position:relative;
+  overflow:hidden;
+}
+.card2::before{
+  content:"";
+  position:absolute; inset:-2px;
+  background: conic-gradient(from 120deg, rgba(0,255,200,.18), rgba(180,80,255,.18), rgba(255,120,0,.12), rgba(0,220,255,.14), rgba(0,255,200,.18));
+  filter: blur(18px);
+  opacity:.6;
+  animation: spin 7s linear infinite;
+}
+@keyframes spin{
+  from{ transform: rotate(0deg); }
+  to{ transform: rotate(360deg); }
+}
+.card2 > *{position:relative}
+
+.bigN{
+  font-size:56px;
+  font-weight:900;
+  letter-spacing:-1px;
+  text-shadow: 0 10px 40px rgba(0,0,0,.55);
+}
+.ref2{color:var(--mut);margin-top:-6px;font-size:13px}
+.txt2{margin-top:12px;line-height:1.6;font-size:18px}
+
+.deckActions{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+
+.footerRow{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+.toggles{display:flex;gap:8px;flex-wrap:wrap}
+.tiny{
+  padding:8px 10px;
+  border-radius:12px;
+  border:1px solid var(--line);
+  background: rgba(255,255,255,.06);
+  color:var(--txt);
+  cursor:pointer;
+}
+.tiny:hover{background: rgba(255,255,255,.10)}
+
+/* ===== Reveal animations */
+.reveal{
+  opacity:0;
+  transform: translateY(14px) scale(.99);
+  filter: blur(6px);
+  transition: opacity .7s ease, transform .7s ease, filter .7s ease;
+}
+.reveal.in{
+  opacity:1;
+  transform: translateY(0) scale(1);
+  filter: blur(0);
+}
+
+/* pop on daily card render */
+.pop{
+  animation: pop .28s ease-out;
+}
+@keyframes pop{
+  from{ transform: translateY(6px) scale(.985); opacity:.6; }
+  to{ transform: translateY(0) scale(1); opacity:1; }
+}
+
+/* ===== Dialog */
 dialog{
   border:none;
   padding:0;
   background: transparent;
 }
-dialog::backdrop{background: rgba(0,0,0,.55)}
+dialog::backdrop{background: rgba(0,0,0,.62)}
 .dlg{
-  width:min(520px, 92vw);
-  background: var(--card);
+  width:min(560px, 92vw);
+  background: rgba(10,10,16,.92);
   border:1px solid var(--line);
-  border-radius:18px;
+  border-radius:22px;
   padding:18px 16px;
   color: var(--txt);
-  box-shadow: 0 20px 60px rgba(0,0,0,.6);
+  box-shadow: 0 24px 80px rgba(0,0,0,.72);
+  backdrop-filter: blur(18px);
 }
 .dlg h3{margin:0 0 10px}
-.dlg p{margin:8px 0;color:var(--mut)}
-.dlg-actions{display:flex;justify-content:flex-end;margin-top:10px}
+.dlg p{margin:8px 0;color:var(--mut);line-height:1.5}
+.dlgActions{display:flex;justify-content:flex-end;margin-top:12px}
+
+/* Responsive */
+@media (max-width:520px){
+  .title{font-size:36px}
+  .txt2{font-size:16px}
+}
