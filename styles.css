@@ -1,0 +1,100 @@
+:root{
+  --bg:#0b0b0f;
+  --card:#12121a;
+  --txt:#f2f2f7;
+  --mut:#b8b8c8;
+  --line:rgba(255,255,255,.08);
+  --btn:#1f1f2e;
+  --btn2:#2b2b44;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  background: radial-gradient(1200px 600px at 20% 0%, rgba(120,80,255,.20), transparent 60%),
+              radial-gradient(1000px 500px at 80% 10%, rgba(0,200,255,.14), transparent 60%),
+              var(--bg);
+  color:var(--txt);
+}
+
+.wrap{max-width:900px;margin:0 auto;padding:28px 18px}
+.badge{
+  display:inline-block;
+  padding:6px 10px;
+  border:1px solid var(--line);
+  border-radius:999px;
+  color:var(--mut);
+  font-size:13px;
+}
+h1{margin:14px 0 6px;font-size:34px;letter-spacing:.2px}
+.subtitle{margin:0 0 14px;color:var(--mut)}
+.cta{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+
+.card{
+  background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+  border:1px solid var(--line);
+  border-radius:18px;
+  padding:18px 16px;
+  margin:16px 0;
+  box-shadow: 0 12px 30px rgba(0,0,0,.35);
+}
+
+h2{margin:0 0 12px;font-size:20px}
+.verses{
+  margin:0;
+  padding-left:20px;
+  line-height:1.55;
+}
+.verses li{margin:10px 0}
+.v{
+  display:inline-block;
+  min-width:22px;
+  text-align:center;
+  padding:2px 8px;
+  margin-right:8px;
+  border-radius:999px;
+  background: rgba(255,255,255,.06);
+  border:1px solid var(--line);
+  color: var(--mut);
+  font-size:12px;
+}
+
+.foot{border-top:1px solid var(--line);margin-top:14px;padding-top:12px;color:var(--mut)}
+.hint{color:var(--mut);line-height:1.5}
+.small{color:var(--mut);font-size:13px;margin:0}
+
+.btn{
+  border:1px solid var(--line);
+  background: var(--btn);
+  color: var(--txt);
+  padding:10px 12px;
+  border-radius:12px;
+  cursor:pointer;
+  text-decoration:none;
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+}
+.btn:hover{background:var(--btn2)}
+.ghost{background:transparent}
+
+dialog{
+  border:none;
+  padding:0;
+  background: transparent;
+}
+dialog::backdrop{background: rgba(0,0,0,.55)}
+.dlg{
+  width:min(520px, 92vw);
+  background: var(--card);
+  border:1px solid var(--line);
+  border-radius:18px;
+  padding:18px 16px;
+  color: var(--txt);
+  box-shadow: 0 20px 60px rgba(0,0,0,.6);
+}
+.dlg h3{margin:0 0 10px}
+.dlg p{margin:8px 0;color:var(--mut)}
+.dlg-actions{display:flex;justify-content:flex-end;margin-top:10px}
