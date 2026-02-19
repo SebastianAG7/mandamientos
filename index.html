@@ -3,88 +3,339 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Éxodo 20:1–17 (RVR1909) — Los Diez Mandamientos</title>
+  <title>Los Diez Mandamientos — Éxodo 20 (RVR1909)</title>
 
-  <meta name="description" content="Éxodo 20:1–17 en Reina-Valera 1909. Los Diez Mandamientos, para leer y recordar." />
-  <meta name="theme-color" content="#0b0b0f" />
+  <meta name="description" content="Los Diez Mandamientos (RVR1909). Acceso directo tipo app + animaciones + mandamiento del día." />
+  <meta name="theme-color" content="#0b0b12" />
 
   <link rel="manifest" href="manifest.json" />
   <link rel="stylesheet" href="styles.css" />
 </head>
-<body>
-  <header class="wrap">
-    <div class="badge">Reina-Valera 1909 (RVR1909)</div>
-    <h1>Los Diez Mandamientos</h1>
-    <p class="subtitle">Éxodo 20:1–17</p>
 
-    <div class="cta">
-      <button id="howBtn" class="btn">Cómo ponerlo en mi celular</button>
-      <a class="btn ghost" href="#texto">Ir al texto</a>
+<body>
+  <!-- Fondo animado (auroras) -->
+  <div class="bg">
+    <div class="aurora a1"></div>
+    <div class="aurora a2"></div>
+    <div class="aurora a3"></div>
+    <div class="grain"></div>
+  </div>
+
+  <header class="wrap hero">
+    <div class="topline">
+      <span class="pill">Reina-Valera 1909 (RVR1909)</span>
+      <span class="pill soft">Éxodo 20</span>
+    </div>
+
+    <h1 class="title">Los Diez Mandamientos</h1>
+    <p class="subtitle">Éxodo 20:1–17 — con numeración 1–10 desde “No tendrás dioses ajenos…”</p>
+
+    <div class="actions">
+      <button class="btn" id="howBtn">📲 Cómo ponerlo en mi celular</button>
+      <button class="btn ghost" id="dailyBtn">✨ Mandamiento del día</button>
+      <a class="btn ghost" href="#lista">📜 Ver lista completa</a>
+    </div>
+
+    <div class="mini">
+      <div class="chip">✅ Animaciones suaves</div>
+      <div class="chip">🧠 Modo “tarjetas”</div>
+      <div class="chip">📌 Acceso directo</div>
     </div>
   </header>
 
-  <main class="wrap" id="texto">
-    <article class="card">
-      <h2>Éxodo 20:1–17</h2>
+  <main class="wrap">
+    <!-- PREÁMBULO -->
+    <section class="card reveal" id="preambulo">
+      <h2>Preámbulo</h2>
+      <p class="muted">Texto base (RVR1909):</p>
+      <div class="quote">
+        <p><span class="v">Éx 20:1</span> Y habló Dios todas estas palabras, diciendo:</p>
+        <p><span class="v">Éx 20:2</span> Yo soy Jehová tu Dios, que te saqué de la tierra de Egipto, de casa de siervos.</p>
+      </div>
+    </section>
 
-      <ol class="verses">
-        <li><span class="v">1</span> Y habló Dios todas estas palabras, diciendo:</li>
-        <li><span class="v">2</span> Yo soy Jehová tu Dios, que te saqué de la tierra de Egipto, de casa de siervos.</li>
-        <li><span class="v">3</span> No tendrás dioses ajenos delante de mí.</li>
-        <li><span class="v">4</span> No te harás imagen, ni ninguna semejanza de cosa que esté arriba en el cielo, ni abajo en la tierra, ni en las aguas debajo de la tierra:</li>
-        <li><span class="v">5</span> No te inclinarás á ellas, ni las honrarás; porque yo soy Jehová tu Dios, fuerte, celoso, que visito la maldad de los padres sobre los hijos hasta la tercera y cuarta generación de los que me aborrecen;</li>
-        <li><span class="v">6</span> Y que hago misericordia en millares á los que me aman, y guardan mis mandamientos.</li>
-        <li><span class="v">7</span> No tomarás el nombre de Jehová tu Dios en vano; porque no dará por inocente Jehová al que tomare su nombre en vano.</li>
-        <li><span class="v">8</span> Acuérdate del día del reposo, para santificarlo:</li>
-        <li><span class="v">9</span> Seis días trabajarás, y harás toda tu obra;</li>
-        <li><span class="v">10</span> Mas el séptimo día será reposo para Jehová tu Dios: no hagas en él obra alguna, tú, ni tu hijo, ni tu hija, ni tu siervo, ni tu criada, ni tu bestia, ni tu extranjero que está dentro de tus puertas:</li>
-        <li><span class="v">11</span> Porque en seis días hizo Jehová los cielos y la tierra, la mar y todas las cosas que en ellos hay, y reposó en el séptimo día: por tanto Jehová bendijo el día del reposo y lo santificó.</li>
-        <li><span class="v">12</span> Honra á tu padre y á tu madre, porque tus días se alarguen en la tierra que Jehová tu Dios te da.</li>
-        <li><span class="v">13</span> No matarás.</li>
-        <li><span class="v">14</span> No cometerás adulterio.</li>
-        <li><span class="v">15</span> No hurtarás.</li>
-        <li><span class="v">16</span> No hablarás contra tu prójimo falso testimonio.</li>
-        <li><span class="v">17</span> No codiciarás la casa de tu prójimo, no codiciarás la mujer de tu prójimo, ni su siervo, ni su criada, ni su buey, ni su asno, ni cosa alguna de tu prójimo.</li>
+    <!-- MODO DIARIO / TARJETAS -->
+    <section class="card reveal" id="diario" hidden>
+      <div class="row">
+        <h2>Mandamiento del día</h2>
+        <span class="badge" id="dayInfo"></span>
+      </div>
+
+      <div class="deck" id="deck">
+        <!-- Se llena con JS -->
+      </div>
+
+      <div class="deckActions">
+        <button class="btn" id="prevBtn">⬅️ Anterior</button>
+        <button class="btn" id="nextBtn">Siguiente ➡️</button>
+        <button class="btn ghost" id="shuffleBtn">🎲 Aleatorio</button>
+        <button class="btn ghost" id="closeDailyBtn">Cerrar</button>
+      </div>
+
+      <p class="small muted">
+        Tip: si lo agregas como acceso directo, se siente como “app”.
+      </p>
+    </section>
+
+    <!-- LISTA COMPLETA -->
+    <section class="card reveal" id="lista">
+      <div class="row">
+        <h2>Los 10 Mandamientos (numeración 1–10)</h2>
+        <div class="toggles">
+          <button class="tiny" id="compactBtn" aria-pressed="false">Modo compacto</button>
+          <button class="tiny" id="focusBtn" aria-pressed="false">Modo enfoque</button>
+        </div>
+      </div>
+
+      <ol class="cmds" id="cmds">
+        <li class="cmd reveal">
+          <div class="n">1</div>
+          <div class="t">
+            <div class="ref">Éxodo 20:3</div>
+            <div class="txt">No tendrás dioses ajenos delante de mí.</div>
+          </div>
+        </li>
+
+        <li class="cmd reveal">
+          <div class="n">2</div>
+          <div class="t">
+            <div class="ref">Éxodo 20:4–6</div>
+            <div class="txt">
+              No te harás imagen, ni ninguna semejanza de cosa que esté arriba en el cielo, ni abajo en la tierra, ni en las aguas debajo de la tierra:
+              No te inclinarás á ellas, ni las honrarás; porque yo soy Jehová tu Dios, fuerte, celoso, que visito la maldad de los padres sobre los hijos hasta la tercera y cuarta generación de los que me aborrecen;
+              Y que hago misericordia en millares á los que me aman, y guardan mis mandamientos.
+            </div>
+          </div>
+        </li>
+
+        <li class="cmd reveal">
+          <div class="n">3</div>
+          <div class="t">
+            <div class="ref">Éxodo 20:7</div>
+            <div class="txt">No tomarás el nombre de Jehová tu Dios en vano; porque no dará por inocente Jehová al que tomare su nombre en vano.</div>
+          </div>
+        </li>
+
+        <li class="cmd reveal">
+          <div class="n">4</div>
+          <div class="t">
+            <div class="ref">Éxodo 20:8–11</div>
+            <div class="txt">
+              Acuérdate del día del reposo, para santificarlo:
+              Seis días trabajarás, y harás toda tu obra;
+              Mas el séptimo día será reposo para Jehová tu Dios: no hagas en él obra alguna, tú, ni tu hijo, ni tu hija, ni tu siervo, ni tu criada, ni tu bestia, ni tu extranjero que está dentro de tus puertas:
+              Porque en seis días hizo Jehová los cielos y la tierra, la mar y todas las cosas que en ellos hay, y reposó en el séptimo día: por tanto Jehová bendijo el día del reposo y lo santificó.
+            </div>
+          </div>
+        </li>
+
+        <li class="cmd reveal">
+          <div class="n">5</div>
+          <div class="t">
+            <div class="ref">Éxodo 20:12</div>
+            <div class="txt">Honra á tu padre y á tu madre, porque tus días se alarguen en la tierra que Jehová tu Dios te da.</div>
+          </div>
+        </li>
+
+        <li class="cmd reveal">
+          <div class="n">6</div>
+          <div class="t">
+            <div class="ref">Éxodo 20:13</div>
+            <div class="txt">No matarás.</div>
+          </div>
+        </li>
+
+        <li class="cmd reveal">
+          <div class="n">7</div>
+          <div class="t">
+            <div class="ref">Éxodo 20:14</div>
+            <div class="txt">No cometerás adulterio.</div>
+          </div>
+        </li>
+
+        <li class="cmd reveal">
+          <div class="n">8</div>
+          <div class="t">
+            <div class="ref">Éxodo 20:15</div>
+            <div class="txt">No hurtarás.</div>
+          </div>
+        </li>
+
+        <li class="cmd reveal">
+          <div class="n">9</div>
+          <div class="t">
+            <div class="ref">Éxodo 20:16</div>
+            <div class="txt">No hablarás contra tu prójimo falso testimonio.</div>
+          </div>
+        </li>
+
+        <li class="cmd reveal">
+          <div class="n">10</div>
+          <div class="t">
+            <div class="ref">Éxodo 20:17</div>
+            <div class="txt">
+              No codiciarás la casa de tu prójimo, no codiciarás la mujer de tu prójimo, ni su siervo, ni su criada, ni su buey, ni su asno, ni cosa alguna de tu prójimo.
+            </div>
+          </div>
+        </li>
       </ol>
 
-      <footer class="foot">
-        <p><strong>Referencia:</strong> Éxodo 20:1–17 (RVR1909)</p>
-      </footer>
-    </article>
+      <div class="footerRow">
+        <button class="btn ghost" id="shareBtn">📤 Compartir</button>
+        <a class="btn ghost" href="#preambulo">⬆️ Subir</a>
+      </div>
+    </section>
 
-    <section class="card">
+    <section class="card reveal">
       <h2>Agregar como acceso directo (tipo app)</h2>
-      <p class="hint">
-        <strong>Android:</strong> abre el link en Chrome → ⋮ (3 puntos) → <em>“Agregar a pantalla principal”</em>.<br/>
-        <strong>iPhone:</strong> abre en Safari → Compartir → <em>“Agregar a pantalla de inicio”</em>.
+      <p class="muted">
+        <strong>Android:</strong> abre el link en Chrome → ⋮ → <em>Agregar a pantalla principal</em>.<br/>
+        <strong>iPhone:</strong> abre en Safari → Compartir → <em>Agregar a pantalla de inicio</em>.
       </p>
-      <p class="small">
-        Tip: si tu cel te deja, quedará como “app” y se abrirá a pantalla completa.
+      <p class="small muted">
+        Si abren desde WhatsApp/Instagram, deben “Abrir en navegador” para que aparezca la opción.
       </p>
     </section>
   </main>
 
   <dialog id="howDlg">
     <div class="dlg">
-      <h3>Cómo ponerlo en tu celular</h3>
+      <h3>📲 Cómo ponerlo en tu celular</h3>
       <p><strong>Android (Chrome):</strong> ⋮ → “Agregar a pantalla principal”.</p>
       <p><strong>iPhone (Safari):</strong> Compartir → “Agregar a pantalla de inicio”.</p>
-      <div class="dlg-actions">
-        <button id="closeDlg" class="btn">Listo</button>
+      <div class="dlgActions">
+        <button id="closeDlg" class="btn">Listo ✅</button>
       </div>
     </div>
   </dialog>
 
   <script>
-    // Modal de ayuda
+    // ===== Modal
     const dlg = document.getElementById("howDlg");
     document.getElementById("howBtn").addEventListener("click", () => dlg.showModal());
     document.getElementById("closeDlg").addEventListener("click", () => dlg.close());
 
-    // Registrar Service Worker (para que cargue rápido y pueda funcionar offline básico)
+    // ===== Scroll reveal (animación al aparecer)
+    const io = new IntersectionObserver((entries) => {
+      for (const e of entries) {
+        if (e.isIntersecting) e.target.classList.add("in");
+      }
+    }, { threshold: 0.08 });
+
+    document.querySelectorAll(".reveal").forEach(el => io.observe(el));
+
+    // ===== PWA service worker
     if ("serviceWorker" in navigator) {
       window.addEventListener("load", () => navigator.serviceWorker.register("./sw.js"));
     }
+
+    // ===== Datos (mandamientos)
+    const COMMANDS = [
+      { n: 1, ref: "Éxodo 20:3", txt: "No tendrás dioses ajenos delante de mí." },
+      { n: 2, ref: "Éxodo 20:4–6", txt:
+        "No te harás imagen, ni ninguna semejanza de cosa que esté arriba en el cielo, ni abajo en la tierra, ni en las aguas debajo de la tierra: " +
+        "No te inclinarás á ellas, ni las honrarás; porque yo soy Jehová tu Dios, fuerte, celoso, que visito la maldad de los padres sobre los hijos hasta la tercera y cuarta generación de los que me aborrecen; " +
+        "Y que hago misericordia en millares á los que me aman, y guardan mis mandamientos."
+      },
+      { n: 3, ref: "Éxodo 20:7", txt: "No tomarás el nombre de Jehová tu Dios en vano; porque no dará por inocente Jehová al que tomare su nombre en vano." },
+      { n: 4, ref: "Éxodo 20:8–11", txt:
+        "Acuérdate del día del reposo, para santificarlo: " +
+        "Seis días trabajarás, y harás toda tu obra; " +
+        "Mas el séptimo día será reposo para Jehová tu Dios: no hagas en él obra alguna, tú, ni tu hijo, ni tu hija, ni tu siervo, ni tu criada, ni tu bestia, ni tu extranjero que está dentro de tus puertas: " +
+        "Porque en seis días hizo Jehová los cielos y la tierra, la mar y todas las cosas que en ellos hay, y reposó en el séptimo día: por tanto Jehová bendijo el día del reposo y lo santificó."
+      },
+      { n: 5, ref: "Éxodo 20:12", txt: "Honra á tu padre y á tu madre, porque tus días se alarguen en la tierra que Jehová tu Dios te da." },
+      { n: 6, ref: "Éxodo 20:13", txt: "No matarás." },
+      { n: 7, ref: "Éxodo 20:14", txt: "No cometerás adulterio." },
+      { n: 8, ref: "Éxodo 20:15", txt: "No hurtarás." },
+      { n: 9, ref: "Éxodo 20:16", txt: "No hablarás contra tu prójimo falso testimonio." },
+      { n: 10, ref: "Éxodo 20:17", txt: "No codiciarás la casa de tu prójimo, no codiciarás la mujer de tu prójimo, ni su siervo, ni su criada, ni su buey, ni su asno, ni cosa alguna de tu prójimo." },
+    ];
+
+    // ===== Mandamiento del día (según fecha)
+    const dailySection = document.getElementById("diario");
+    const deck = document.getElementById("deck");
+    const dayInfo = document.getElementById("dayInfo");
+
+    let idx = 0;
+
+    function renderCard(i) {
+      const c = COMMANDS[i];
+      deck.innerHTML = `
+        <div class="card2 pop">
+          <div class="bigN">${c.n}</div>
+          <div class="ref2">${c.ref}</div>
+          <div class="txt2">${c.txt}</div>
+        </div>
+      `;
+    }
+
+    function setDailyIndex() {
+      const d = new Date();
+      const seed = (d.getFullYear()*10000) + ((d.getMonth()+1)*100) + d.getDate();
+      idx = seed % COMMANDS.length;
+      const label = d.toLocaleDateString("es-EC", { weekday:"long", year:"numeric", month:"long", day:"numeric" });
+      dayInfo.textContent = label;
+      renderCard(idx);
+    }
+
+    document.getElementById("dailyBtn").addEventListener("click", () => {
+      dailySection.hidden = false;
+      dailySection.scrollIntoView({ behavior: "smooth", block: "start" });
+      setDailyIndex();
+    });
+
+    document.getElementById("closeDailyBtn").addEventListener("click", () => {
+      dailySection.hidden = true;
+    });
+
+    document.getElementById("prevBtn").addEventListener("click", () => {
+      idx = (idx - 1 + COMMANDS.length) % COMMANDS.length;
+      renderCard(idx);
+    });
+
+    document.getElementById("nextBtn").addEventListener("click", () => {
+      idx = (idx + 1) % COMMANDS.length;
+      renderCard(idx);
+    });
+
+    document.getElementById("shuffleBtn").addEventListener("click", () => {
+      idx = Math.floor(Math.random() * COMMANDS.length);
+      renderCard(idx);
+    });
+
+    // ===== Modo compacto / enfoque
+    const cmds = document.getElementById("cmds");
+    const compactBtn = document.getElementById("compactBtn");
+    const focusBtn = document.getElementById("focusBtn");
+
+    compactBtn.addEventListener("click", () => {
+      const on = cmds.classList.toggle("compact");
+      compactBtn.setAttribute("aria-pressed", on ? "true" : "false");
+    });
+
+    focusBtn.addEventListener("click", () => {
+      const on = cmds.classList.toggle("focus");
+      focusBtn.setAttribute("aria-pressed", on ? "true" : "false");
+    });
+
+    // ===== Compartir (si el cel lo soporta)
+    document.getElementById("shareBtn").addEventListener("click", async () => {
+      const url = location.href.split("#")[0];
+      try {
+        if (navigator.share) {
+          await navigator.share({
+            title: "Los Diez Mandamientos (RVR1909)",
+            text: "Éxodo 20:1–17 — Acceso directo y mandamiento del día",
+            url
+          });
+        } else {
+          await navigator.clipboard.writeText(url);
+          alert("Link copiado ✅");
+        }
+      } catch (_) {}
+    });
   </script>
 </body>
 </html>
+
